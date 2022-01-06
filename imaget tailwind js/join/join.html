@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Join | Imaget</title>
+  </head>
+  <body>
+    <div class="w-full h-full flex">
+      <section class="flex basis-3/6 items-center justify-center bg-amber-500">
+        <span class="select-none text-5xl font-bold">Imaget</span>
+      </section>
+      <section class="flex basis-4/6 items-center justify-center">
+        <form
+          class="flex h-5/6 flex-col justify-evenly"
+          onsubmit="return(validate())"
+        >
+          <label class="font-extrabold text-4xl mb-8 text-center select-none"
+            >Join Imaget</label
+          >
+          <div class="flex">
+            <div class="flex flex-col mr-1.5 relative">
+              <label class="text-sm my-1 mx-0 select-none">First name</label>
+              <input
+                name="firstName"
+                class="p-2 outline-none border-b border-black"
+              />
+            </div>
+            <div class="flex flex-col ml-1.5 relative">
+              <label class="text-sm my-1 mx-0 select-none">Last name</label>
+              <input
+                name="lastName"
+                class="p-2 outline-none border-b border-black"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col relative">
+            <label class="text-sm my-1 mx-0 select-none">Email address</label>
+            <input
+              name="email"
+              class="p-2 outline-none border-b border-black"
+            />
+          </div>
+          <div class="flex flex-col relative">
+            <label class="text-sm my-1 mx-0 select-none">Password</label>
+            <input
+              name="password"
+              type="password"
+              class="p-2 outline-none border-b border-black"
+            />
+          </div>
+          <div class="flex flex-col relative">
+            <label class="text-sm my-1 mx-0 select-none">Repeat password</label>
+            <input
+              name="repeatPassword"
+              type="password"
+              class="p-2 outline-none border-b border-black"
+            />
+          </div>
+          <button class="p-2 bg-black text-white rounded-lg mt-8">Join</button>
+          <div class="mt-4">
+            <span class="select-none">Already have an account?</span>
+            <a class="text-neutral-500" href="/login/login.html">Login</a>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script type="text/javascript" src="./joinValidation.js"></script>
+  </body>
+</html>

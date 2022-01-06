@@ -1,0 +1,43 @@
+.upload-container {
+  display: flex;
+  flex: 1;
+}
+
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #fafafa;
+  cursor: pointer;
+}
+
+.info-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.info-area select {
+  padding: 0.5em;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 0.5em;
+}
+
+.info-area form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 50%;
+  width: 40%;
+  padding: 5em 3em;
+  border-radius: 0.5em;
+  border: 2px solid #000400;
+}
+
+input[type="file"] {
+  display: none;
+}

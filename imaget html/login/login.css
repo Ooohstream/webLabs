@@ -1,0 +1,35 @@
+.left-side {
+  display: flex;
+  flex: 1;
+  background: #eea04e;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: #000400;
+  font-weight: bold;
+}
+
+.right-side {
+  display: flex;
+  flex: 1;
+  background: #fafafa;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-side .login-form a {
+  color: gray;
+  text-decoration: none;
+}
+
+.login-form {
+  display: flex;
+  height: 60%;
+  width: 50%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.login-form > label {
+  text-align: center;
+}

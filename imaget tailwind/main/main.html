@@ -1,0 +1,160 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Main</title>
+  </head>
+  <body>
+    <div class="w-full h-full flex flex-col">
+      <nav class="w-full flex items-center h-32">
+        <a class="my-2 mx-6 text-black font-bold select-none text-3xl" href="#"
+          >Imaget</a
+        >
+        <section class="flex flex-1 flex-col w-full h-full">
+          <form class="flex items-center flex-1 ml-6">
+            <input
+              class="p-1.5 outline-none border rounded-lg w-full"
+              placeholder="Search..."
+            />
+            <section class="flex justify-evenly w-44">
+              <a
+                href="/upload/upload.html"
+                class="text-sm text-base border border-black p-1 rounded-lg"
+              >
+                Upload new image
+              </a>
+              <!-- <button class="p-1 bg-black text-white rounded-lg">
+                Sign In
+              </button>
+              <button class="p-1 bg-black text-white rounded-lg">
+                Sign Up
+              </button> -->
+            </section>
+          </form>
+          <ul class="flex justify-between items-center flex-1 p-0 mx-6">
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Wallpapers</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Nature</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Fashion</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >3D Renders</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Architecture</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Film</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >People</a
+              >
+            </li>
+          </ul>
+        </section>
+      </nav>
+      <div class="gallery-grid-wrapper">
+        <section class="gallery-grid-container"></section>
+      </div>
+    </div>
+    <script>
+      let section = document.getElementsByClassName(
+        "gallery-grid-container"
+      )[0];
+      for (let i = 0; i < 100; i++) {
+        const screenWidth = parseInt(Math.random() * (3840 - 640) + 640);
+        const screenHeight = parseInt(Math.random() * (2160 - 360) + 360);
+        section.innerHTML += `
+        <div class="gallery-container wi-${2} he-${2}">
+            <div class="gallery-item">
+              <div class="image">
+                <img src="https://picsum.photos/${screenWidth}/${screenHeight}?random" />
+              </div>
+            </div>
+          </div>`;
+      }
+    </script>
+  </body>
+</html>

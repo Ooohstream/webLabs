@@ -1,0 +1,46 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login | Imaget</title>
+  </head>
+  <body>
+    <div class="h-full w-full flex">
+      <section class="flex flex-1 bg-amber-500 justify-center items-center">
+        <span class="select-none text-5xl font-bold">Imaget</span>
+      </section>
+      <section class="flex flex-1 bg-white justify-center items-center">
+        <form class="flex h-5/6 w-3/6 flex-col justify-evenly">
+          <label class="font-extrabold text-3xl select-none text-center"
+            >Login</label
+          >
+          <div class="flex flex-col relative">
+            <label class="text-sm my-1 mx-0 select-none">Email address</label>
+            <input class="p-2 outline-none border-b border-black" />
+          </div>
+          <div class="flex flex-col relative">
+            <label class="text-sm my-1 mx-0 select-none">Password</label>
+            <input
+              type="password"
+              class="p-2 outline-none border-b border-black"
+            />
+          </div>
+          <button class="p-2 bg-black text-white rounded-lg mt-8">Login</button>
+          <div>
+            <span class="select-none">Don't have an account?</span>
+            <a class="text-neutral-500" href="/join/join.html">Join</a>
+          </div>
+        </form>
+      </section>
+    </div>
+    <script src="./loginValidation.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="../upload/upload.css" />
+    <title>Upload</title>
+  </head>
+  <body>
+    <div class="container" style="flex-direction: column">
+      <nav class="nav-bar">
+        <a class="logo-ref" href="/main/main.html">Imaget</a>
+        <section class="navigation-block">
+          <ul style="justify-content: space-evenly !important">
+            <li><a class="nav-link" href="#">Wallpapers</a></li>
+            <li><a class="nav-link" href="#">Nature</a></li>
+            <li><a class="nav-link" href="#">Fashion</a></li>
+            <li><a class="nav-link" href="#">3D Renders</a></li>
+            <li><a class="nav-link" href="#">Architecture</a></li>
+            <li><a class="nav-link" href="#">Film</a></li>
+            <li><a class="nav-link" href="#">People</a></li>
+          </ul>
+        </section>
+      </nav>
+      <section class="upload-container">
+        <label class="upload-area">
+          <img src="https://img.icons8.com/ios/150/eea04e/image.png" />
+          <h3>Drag and drop an image or choose from files</h3>
+          <input type="file" accept="image/*" />
+        </label>
+        <div class="info-area">
+          <form>
+            <div class="labeled-input labeled-input-underlined">
+              <label>File name</label>
+              <input />
+            </div>
+            <div class="labeled-input labeled-input-underlined">
+              <label>Category</label>
+              <select>
+                <option>Wallpapers</option>
+                <option>Nature</option>
+                <option>Fashion</option>
+                <option>3D Renders</option>
+                <option>Architecture</option>
+                <option>Film</option>
+                <option>People</option>
+              </select>
+            </div>
+            <button
+              class="btn btn-black"
+              style="margin-top: 2em; font-size: 1em"
+            >
+              Upload
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

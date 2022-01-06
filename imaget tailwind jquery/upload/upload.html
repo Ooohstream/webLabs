@@ -1,0 +1,173 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../upload/upload.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../jquery-3.6.0.js"></script>
+    <title>Upload</title>
+  </head>
+  <body>
+    <div class="flex flex-1 w-full h-full flex-col">
+      <nav class="w-full flex items-center h-32">
+        <a
+          class="my-2 mx-6 text-black font-bold select-none text-3xl"
+          href="/main//main.html"
+          >Imaget</a
+        >
+        <section class="flex flex-1 flex-col w-full h-full mx-6">
+          <ul class="flex justify-between items-center flex-1 p-0">
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Wallpapers</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Nature</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Fashion</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >3D Renders</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Architecture</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >Film</a
+              >
+            </li>
+            <li>
+              <a
+                class="
+                  transition
+                  duration-700
+                  hover:border-black
+                  border-b border-transparent
+                  pb-2
+                "
+                href="#"
+                >People</a
+              >
+            </li>
+          </ul>
+        </section>
+      </nav>
+      <section class="flex flex-1">
+        <label
+          class="
+            flex flex-col flex-1
+            justify-center
+            items-center
+            border-r
+            cursor-pointer
+          "
+        >
+          <img src="https://img.icons8.com/ios/150/eea04e/image.png" />
+          <h3>Drag and drop an image or choose from files</h3>
+          <input id="image-upload-input" type="file" accept="image/*" />
+        </label>
+        <div class="flex flex-1 items-center justify-center">
+          <form
+            class="
+              flex flex-col
+              justify-evenly
+              h-4/6
+              w-3/6
+              px-4
+              py-8
+              border border-black
+              rounded-xl
+            "
+          >
+            <div class="flex flex-col">
+              <label class="text-sm my-1 mx-0 select-none">File name</label>
+              <input class="p-2 outline-none border-b border-black" />
+            </div>
+            <div class="flex flex-col">
+              <label class="text-sm my-2 mx-0 select-none">Category</label>
+              <select class="outline-none py-1 border rounded">
+                <option>Wallpapers</option>
+                <option>Nature</option>
+                <option>Fashion</option>
+                <option>3D Renders</option>
+                <option>Architecture</option>
+                <option>Film</option>
+                <option>People</option>
+              </select>
+            </div>
+            <button class="p-2 bg-black text-white rounded-lg mt-8">
+              Upload
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <script src="./uploadHandler.js" type="text/javascript"></script>
+  </body>
+</html>

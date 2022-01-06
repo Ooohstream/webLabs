@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="stylesheet" href="../main/main.css" />
+    <title>Main</title>
+  </head>
+  <body>
+    <div class="container" style="flex-direction: column">
+      <nav class="nav-bar">
+        <a class="logo-ref" href="#">Imaget</a>
+        <section class="navigation-block">
+          <form>
+            <input class="search-input" placeholder="Search..." />
+            <section class="btn-group">
+              <a
+                href="/upload/upload.html"
+                style="font-size: 1em"
+                class="btn btn-outlined-black"
+              >
+                Upload new image
+              </a>
+              <!-- <button style="font-size: 1em" class="btn btn-outlined-black">
+                Sign in
+              </button>
+              <button style="font-size: 1em" class="btn btn-outlined-black">
+                Sign up
+              </button> -->
+            </section>
+          </form>
+          <ul>
+            <li><a class="nav-link" href="#">Wallpapers</a></li>
+            <li><a class="nav-link" href="#">Nature</a></li>
+            <li><a class="nav-link" href="#">Fashion</a></li>
+            <li><a class="nav-link" href="#">3D Renders</a></li>
+            <li><a class="nav-link" href="#">Architecture</a></li>
+            <li><a class="nav-link" href="#">Film</a></li>
+            <li><a class="nav-link" href="#">People</a></li>
+          </ul>
+        </section>
+      </nav>
+      <div class="gallery-grid-wrapper">
+        <section class="gallery-grid-container"></section>
+      </div>
+    </div>
+    <script>
+      let section = document.getElementsByClassName(
+        "gallery-grid-container"
+      )[0];
+      for (let i = 0; i < 100; i++) {
+        const screenWidth = parseInt(Math.random() * (3840 - 640) + 640);
+        const screenHeight = parseInt(Math.random() * (2160 - 360) + 360);
+        section.innerHTML += `
+        <div class="gallery-container w-${2} h-${2}">
+            <div class="gallery-item">
+              <div class="image">
+                <img src="https://picsum.photos/${screenWidth}/${screenHeight}?random" />
+              </div>
+            </div>
+          </div>`;
+      }
+    </script>
+  </body>
+</html>
