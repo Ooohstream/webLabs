@@ -5,6 +5,7 @@ const cors = require("cors");
 const PORT = process.env.PORT;
 
 const sequelize = require("./database/index");
+const fileUpload = require("express-fileupload");
 
 sequelize
   .authenticate()
@@ -15,15 +16,21 @@ sequelize
 
 app
   .use(
+    fileUpload({
+      createParentPath: true,
+    })
+  )
+  .use("/uploads", express.static(__dirname + "/uploads"))
+  .use(
     express.urlencoded({
       extended: true,
     })
   )
+  .use(express.json())
   .use(cors({ credentials: true, origin: "*" }));
 
-app.use(express.json());
-
 app.use("/users", require("./routes/users"));
+app.use("/files", require("./routes/files"));
 
 app.get("/", (req, res) => {
   res.send("This is an API for Imaget");

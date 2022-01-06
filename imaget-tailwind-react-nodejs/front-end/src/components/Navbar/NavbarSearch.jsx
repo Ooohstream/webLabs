@@ -4,7 +4,7 @@ import Button from "../Button";
 import { useSelector } from "react-redux";
 
 function NavbarSearch() {
-  const auth = useSelector((state) => state.auth.isAuth);
+  const auth = useSelector((state) => state.auth);
 
   return (
     <form className="flex items-center flex-1 ml-6">

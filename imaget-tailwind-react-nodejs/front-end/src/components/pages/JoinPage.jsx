@@ -1,10 +1,18 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import bcrypt from "bcryptjs";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/slices/AuthSlice";
 
 function Join() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) navigate("/");
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -12,14 +20,24 @@ function Join() {
     watch,
   } = useForm();
 
+  const [joinError, setJoinError] = useState("");
+  const dispatcher = useDispatch();
+
   const onSubmit = async (data) => {
-    await axios.post("http://localhost:5000/users/add", {
-      user: {
-        ...data,
-        password: bcrypt.hashSync(data.password),
-        repeatPassword: undefined,
-      },
-    });
+    try {
+      const response = await axios.post("http://localhost:5000/users/add", {
+        user: {
+          ...data,
+          password: bcrypt.hashSync(data.password),
+          repeatPassword: undefined,
+        },
+      });
+      dispatcher(login(response.data?.accessToken));
+      localStorage.setItem("accessToken", response.data?.accessToken);
+      navigate("/");
+    } catch (error) {
+      setJoinError(error.response.data.error);
+    }
   };
 
   return (
@@ -174,6 +192,7 @@ function Join() {
               {errors?.repeatPassword?.message}
             </p>
           </div>
+          <p className="w-96 text-xs text-red-500">{joinError}</p>
           <button className="p-2 bg-black text-white rounded-lg mt-8">
             Join
           </button>
