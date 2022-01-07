@@ -4,12 +4,6 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-router.get("/", (req, res) => {
-  UserModel.findAll()
-    .then((users) => res.send(users))
-    .catch((err) => res.send("There was some error getting users", err));
-});
-
 router.post("/add", async (req, res) => {
   const emailExist = await UserModel.findOne({
     where: { email: req.body.user.email },
@@ -22,12 +16,13 @@ router.post("/add", async (req, res) => {
       email: req.body.user.email,
       password: req.body.user.password,
     });
-    newUser
+    await newUser
       .save()
       .then(
         res.status(200).json({
           accessToken: jwt.sign(
             {
+              user_id: newUser.getDataValue("id"),
               first_name: req.body.user.firstName,
               last_name: req.body.user.lastName,
               email: req.body.user.email,
@@ -60,6 +55,7 @@ router.get("/login", async (req, res) => {
       return res.status(200).json({
         accessToken: jwt.sign(
           {
+            user_id: userExists.getDataValue("id"),
             first_name: userExists.getDataValue("first_name"),
             last_name: userExists.getDataValue("last_name"),
             email: userExists.getDataValue("email"),

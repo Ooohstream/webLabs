@@ -1,22 +1,36 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Item from "./Item";
 import { GalleryGridContainer, GalleryGridWrapper } from "./styles";
 
 function Gallery() {
   const [images, setImages] = useState([]);
+  const location = useLocation();
+
+  // useEffect(() => {
+  //   const init = async () => {
+  //     const {}
+  //   }
+  // }, [])
 
   useEffect(() => {
-    let imageArr = [];
-    for (let i = 0; i < 100; i++) {
-      const screenWidth = parseInt(Math.random() * (3840 - 640) + 640);
-      const screenHeight = parseInt(Math.random() * (2160 - 360) + 360);
-      const url = `https://picsum.photos/${screenWidth}/${screenHeight}?random`;
-      imageArr.push(url);
-    }
-    setImages(imageArr);
-  }, []);
-
-  console.log(images);
+    const findCategory = async () => {
+      const params = new URLSearchParams(location.search);
+      if (params.get("category") !== null) {
+        const { data } = await axios("http://localhost:5000/files", {
+          params: {
+            categoryId: location.state,
+          },
+        });
+        setImages(data);
+      } else {
+        const { data } = await axios("http://localhost:5000/files");
+        setImages(data);
+      }
+    };
+    findCategory();
+  }, [location]);
 
   return (
     <GalleryGridWrapper>

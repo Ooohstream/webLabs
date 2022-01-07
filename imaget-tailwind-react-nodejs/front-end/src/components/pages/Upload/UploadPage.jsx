@@ -4,13 +4,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FileChooser } from "./styles";
 
-function UploadPage() {
+function UploadPage({ categories }) {
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("accessToken")) navigate("/");
   }, []);
-
-  const [file, setFile] = useState("");
 
   const {
     register,
@@ -23,16 +21,20 @@ function UploadPage() {
     try {
       let formData = new FormData();
       formData.append("file", data.file[0]);
-      const response = await axios.post(
-        "http://localhost:5000/files/upload",
-        formData,
-        {
-          headers: {
-            Authorization: localStorage.getItem("accessToken"),
-            "Content-Type": "multipart/form-data",
-          },
-        }
+      formData.append("filename", data.fileName);
+      formData.append("category", data.category);
+      formData.append(
+        "categoryId",
+        categories.find((category) => category.displayName === data.category)
+          ?.id
       );
+      await axios.post("http://localhost:5000/files/upload", formData, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -101,14 +103,19 @@ function UploadPage() {
           </div>
           <div className="flex flex-col">
             <label className="text-sm my-2 mx-0 select-none">Category</label>
-            <select className="outline-none py-1 border rounded">
-              <option>Wallpapers</option>
-              <option>Nature</option>
-              <option>Fashion</option>
-              <option>3D Renders</option>
-              <option>Architecture</option>
-              <option>Film</option>
-              <option>People</option>
+            <select
+              className="outline-none py-1 border rounded"
+              {...register("category", {
+                required: (
+                  <p className="text-xs text-red-500 top-full">
+                    File name is requied
+                  </p>
+                ),
+              })}
+            >
+              {categories.map((category) => (
+                <option key={category.id}>{category.displayName}</option>
+              ))}
             </select>
           </div>
           <button className="p-2 bg-black text-white rounded-lg mt-8">

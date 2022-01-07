@@ -17,9 +17,8 @@ function CategoryLink(props) {
                 "
         onClick={(e) => {
           e.preventDefault();
-          navigate({
-            pathname: "/",
-            search: `?${createSearchParams({ category: props.children })}`,
+          navigate(`/?${createSearchParams({ category: props.children })}`, {
+            state: props.categoryId,
           });
         }}
       >

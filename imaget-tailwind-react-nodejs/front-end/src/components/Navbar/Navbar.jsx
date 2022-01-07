@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import CategoryLink from "./CategoryLink";
 import NavbarSearch from "./NavbarSearch";
 
-function Navbar() {
+function Navbar({ categories }) {
   return (
     <nav className="w-full flex items-center h-32">
       <NavLink
@@ -15,13 +15,11 @@ function Navbar() {
       <section className="flex flex-1 flex-col w-full h-full">
         <NavbarSearch />
         <ul className="flex justify-between items-center flex-1 p-0 mx-6">
-          <CategoryLink>Wallpapers</CategoryLink>
-          <CategoryLink>Nature</CategoryLink>
-          <CategoryLink>Fashion</CategoryLink>
-          <CategoryLink>3D Renders</CategoryLink>
-          <CategoryLink>Architecture</CategoryLink>
-          <CategoryLink>Film</CategoryLink>
-          <CategoryLink>People</CategoryLink>
+          {categories.map((category) => (
+            <CategoryLink categoryId={category.id} key={category.id}>
+              {category.displayName}
+            </CategoryLink>
+          ))}
         </ul>
       </section>
     </nav>

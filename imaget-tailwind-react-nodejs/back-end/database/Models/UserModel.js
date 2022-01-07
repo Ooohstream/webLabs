@@ -1,8 +1,13 @@
 const Sequelize = require("sequelize");
-
-const sequelize = require("../index");
+const sequelize = require("../dbConfig");
 
 const UserModel = sequelize.define("users", {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    unique: true,
+    primaryKey: true,
+  },
   first_name: {
     type: Sequelize.STRING,
   },
