@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const verify = require("../middleware/verifyToken");
 const FileModel = require("../database/Models/FileModel");
+const CategoryModel = require("../database/Models/CategoryModel");
+const UserModel = require("../database/Models/UserModel");
 
 router.post("/upload", verify, async (req, res) => {
   try {
@@ -40,22 +42,29 @@ router.get("/", async (req, res) => {
   if (req?.query?.categoryId) {
     files = await FileModel.findAll({
       where: { categoryId: req.query.categoryId },
+      include: [{ model: CategoryModel }, { model: UserModel }],
       limit: 100,
     });
   } else {
-    files = await FileModel.findAll({ limit: 100 });
+    files = await FileModel.findAll({
+      limit: 100,
+      include: [{ model: CategoryModel }, { model: UserModel }],
+    });
   }
 
-  res
-    .status(200)
-    .json(
-      files.map(
-        (file) =>
-          `http://localhost:5000${file.getDataValue("dir")}/${file.getDataValue(
-            "name"
-          )}.${file.getDataValue("type")}`
-      )
-    );
+  const fileInfoArray = files.map((file) => ({
+    fileRef: `http://localhost:5000${file.getDataValue(
+      "dir"
+    )}/${file.getDataValue("name")}.${file.getDataValue("type")}`,
+    fileName: file.getDataValue("display_name"),
+    posterFirstName: file.getDataValue("user").getDataValue("first_name"),
+    posterLastName: file.getDataValue("user").getDataValue("last_name"),
+    addedAt: file.getDataValue("createdAt"),
+    category: file.getDataValue("category").getDataValue("name"),
+    type: file.getDataValue("type"),
+  }));
+
+  res.status(200).json(fileInfoArray);
 });
 
 module.exports = router;

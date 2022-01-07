@@ -1,18 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Modal from "../../Modal/Modal";
 import Item from "./Item";
 import { GalleryGridContainer, GalleryGridWrapper } from "./styles";
 
 function Gallery() {
   const [images, setImages] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalImage, setModalImage] = useState({});
   const location = useLocation();
-
-  // useEffect(() => {
-  //   const init = async () => {
-  //     const {}
-  //   }
-  // }, [])
 
   useEffect(() => {
     const findCategory = async () => {
@@ -32,14 +29,26 @@ function Gallery() {
     findCategory();
   }, [location]);
 
+  const handleModal = (image) => {
+    setModalVisible(true);
+    setModalImage(image);
+  };
+
   return (
-    <GalleryGridWrapper>
-      <GalleryGridContainer>
-        {images.map((img) => (
-          <Item imgSource={img} />
-        ))}
-      </GalleryGridContainer>
-    </GalleryGridWrapper>
+    <>
+      <Modal
+        modalImage={modalImage}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+      <GalleryGridWrapper>
+        <GalleryGridContainer>
+          {images.map((img) => (
+            <Item key={img.fileRef} img={img} onClick={handleModal} />
+          ))}
+        </GalleryGridContainer>
+      </GalleryGridWrapper>
+    </>
   );
 }
 

@@ -11,7 +11,13 @@ function Item(props) {
     <GalleryItemWrapper>
       <GalleryItem>
         <GalleryItemImage>
-          <GalleryImage src={props.imgSource} />
+          <GalleryImage
+            src={props.img.fileRef}
+            onClick={(e) => {
+              e.preventDefault();
+              props.onClick(props.img);
+            }}
+          />
         </GalleryItemImage>
       </GalleryItem>
     </GalleryItemWrapper>

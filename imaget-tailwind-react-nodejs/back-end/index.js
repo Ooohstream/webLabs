@@ -12,14 +12,19 @@ app
       createParentPath: true,
     })
   )
+  .use(
+    cors({
+      credentials: true,
+      origin: "*",
+    })
+  )
   .use("/uploads", express.static(__dirname + "/uploads"))
   .use(
     express.urlencoded({
       extended: true,
     })
   )
-  .use(express.json())
-  .use(cors({ credentials: true, origin: "*" }));
+  .use(express.json());
 
 app.use("/users", require("./routes/users"));
 app.use("/files", require("./routes/files"));
