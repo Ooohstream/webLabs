@@ -1,9 +1,38 @@
 import axios from "axios";
 import React from "react";
 import Moment from "react-moment";
+import { useLocation, useParams } from "react-router-dom";
 import { ModalContent, ModalWrapper } from "./styles";
 
 function Modal(props) {
+  const location = useLocation();
+
+  const handleDownload = async () => {
+    await axios({
+      url: props.modalImage.fileRef,
+      method: "GET",
+      responseType: "blob",
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute(
+        "download",
+        `${props.modalImage.fileName}.${props.modalImage.type}`
+      );
+      document.body.appendChild(link);
+      link.click();
+    });
+  };
+
+  const handleSearchTerm = (value) => {
+    const params = new URLSearchParams(location.search);
+    const searchTerm = params.get("search");
+    if (value?.toLocaleLowerCase()?.includes(searchTerm?.toLocaleLowerCase())) {
+      return "bg-gray-300";
+    }
+  };
+
   return (
     <ModalWrapper
       onClick={(e) => {
@@ -32,7 +61,9 @@ function Modal(props) {
         <img alt="modal-pic" src={props.modalImage.fileRef} />
         <div className="flex flex-1 mt-5">
           <div className="flex-1 flex flex-col justify-evenly items-start">
-            <span>{props.modalImage.fileName}</span>
+            <span className={handleSearchTerm(props.modalImage.fileName)}>
+              {props.modalImage.fileName}
+            </span>
             <span>
               By {props.modalImage.posterFirstName}{" "}
               {props.modalImage.posterLastName}
@@ -42,28 +73,17 @@ function Modal(props) {
               <Moment format="D MMM YYYY" date={props.modalImage.addedAt} />
             </span>
 
-            <span>Category {props.modalImage.category}</span>
+            <span className={handleSearchTerm(props.modalImage.category)}>
+              Category {props.modalImage.category}
+            </span>
+            <span className={handleSearchTerm(props.modalImage.type)}>
+              Format .{props.modalImage.type}
+            </span>
           </div>
           <div className="flex-1 bg-white flex justify-around items-center flex-col">
             <button
-              onClick={async () => {
-                axios({
-                  url: props.modalImage.fileRef,
-                  method: "GET",
-                  responseType: "blob",
-                }).then((response) => {
-                  const url = window.URL.createObjectURL(
-                    new Blob([response.data])
-                  );
-                  const link = document.createElement("a");
-                  link.href = url;
-                  link.setAttribute(
-                    "download",
-                    `${props.modalImage.fileName}.${props.modalImage.type}`
-                  );
-                  document.body.appendChild(link);
-                  link.click();
-                });
+              onClick={() => {
+                handleDownload();
               }}
               className="p-1 bg-black text-white rounded-lg w-5/6 text-center"
             >

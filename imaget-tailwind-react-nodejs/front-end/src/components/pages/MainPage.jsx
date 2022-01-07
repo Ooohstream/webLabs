@@ -12,6 +12,7 @@ const MainPage = () => {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatcher = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const init = async () => {
@@ -23,7 +24,11 @@ const MainPage = () => {
 
   return (
     <section className="w-screen h-screen flex flex-col">
-      <Navbar categories={categories} />
+      <Navbar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        categories={categories}
+      />
       <Routes>
         <Route
           path="/upload"

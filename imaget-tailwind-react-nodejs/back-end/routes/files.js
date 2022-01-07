@@ -45,7 +45,32 @@ router.get("/", async (req, res) => {
       include: [{ model: CategoryModel }, { model: UserModel }],
       limit: 100,
     });
-  } else {
+  }
+
+  if (req.query?.searchTerm) {
+    files = await FileModel.findAll({
+      include: [{ model: CategoryModel }, { model: UserModel }],
+      limit: 100,
+    });
+    files = files.filter(
+      (file) =>
+        file
+          .getDataValue("display_name")
+          .toLocaleLowerCase()
+          .includes(req.query.searchTerm.toLocaleLowerCase()) ||
+        file
+          .getDataValue("category")
+          .getDataValue("name")
+          .toLocaleLowerCase()
+          .includes(req.query.searchTerm.toLocaleLowerCase()) ||
+        file
+          .getDataValue("type")
+          .toLocaleLowerCase()
+          .includes(req.query.searchTerm.toLocaleLowerCase())
+    );
+  }
+
+  if (Object.keys(req.query).length === 0) {
     files = await FileModel.findAll({
       limit: 100,
       include: [{ model: CategoryModel }, { model: UserModel }],
@@ -64,7 +89,9 @@ router.get("/", async (req, res) => {
     type: file.getDataValue("type"),
   }));
 
-  res.status(200).json(fileInfoArray);
+  setTimeout(() => {
+    res.status(200).json(fileInfoArray);
+  }, 1000);
 });
 
 module.exports = router;
