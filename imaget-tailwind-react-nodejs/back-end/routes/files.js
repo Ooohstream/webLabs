@@ -89,9 +89,7 @@ router.get("/", async (req, res) => {
     type: file.getDataValue("type"),
   }));
 
-  setTimeout(() => {
-    res.status(200).json(fileInfoArray);
-  }, 1000);
+  res.status(200).json(fileInfoArray);
 });
 
 module.exports = router;

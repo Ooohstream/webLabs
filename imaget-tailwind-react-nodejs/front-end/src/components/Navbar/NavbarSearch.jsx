@@ -1,5 +1,10 @@
 import React from "react";
-import { NavLink, useNavigate, createSearchParams } from "react-router-dom";
+import {
+  NavLink,
+  useNavigate,
+  createSearchParams,
+  useLocation,
+} from "react-router-dom";
 import Button from "../Button";
 import { useSelector } from "react-redux";
 import { DebounceInput } from "react-debounce-input";
@@ -7,6 +12,7 @@ import { DebounceInput } from "react-debounce-input";
 function NavbarSearch({ searchTerm, setSearchTerm }) {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearch = (value) => {
     setSearchTerm(value);
@@ -19,7 +25,11 @@ function NavbarSearch({ searchTerm, setSearchTerm }) {
   };
 
   return (
-    <form className="flex items-center flex-1 ml-6">
+    <form
+      className={`flex items-center flex-1 ml-6 ${
+        location.pathname === "/upload" ? "hidden" : ""
+      }`}
+    >
       <DebounceInput
         className="p-1.5 outline-none border rounded-lg w-full"
         placeholder="Search..."
